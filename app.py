@@ -402,6 +402,11 @@ def process_sources(pdf_files, url_text: str):
 
     return all_docs, source_labels
 
+def clean_response(text: str) -> str:
+    # remove <think>...</think>
+    text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL)
+    return text.strip()
+
 # ─── Sidebar ──────────────────────────────────────────────────────────────────
 with st.sidebar:
     # ───────────────── Header ─────────────────
@@ -596,6 +601,7 @@ if st.session_state.chatbot_ready:
                     config={"configurable": {"session_id": st.session_state.session_id}},
                 )
                 answer = response.get("answer", "I'm not sure about that.")
+                answer = clean_response(answer)
             st.markdown(answer)
             # Show source metadata
             context_docs = response.get("context", [])
