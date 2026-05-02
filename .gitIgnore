@@ -1,0 +1,135 @@
+# ─────────────────────────────
+# Python core
+# ─────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# ─────────────────────────────
+# Build & packaging
+# ─────────────────────────────
+.Python
+build/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+sdist/
+wheels/
+*.egg-info/
+MANIFEST
+
+# PyInstaller
+*.spec
+*.manifest
+
+# ─────────────────────────────
+# Virtual environments
+# ─────────────────────────────
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# ─────────────────────────────
+# Testing / coverage
+# ─────────────────────────────
+.pytest_cache/
+.tox/
+.nox/
+.coverage*
+htmlcov/
+.hypothesis/
+
+# ─────────────────────────────
+# Logs & runtime
+# ─────────────────────────────
+*.log
+logs/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ─────────────────────────────
+# Databases / vector stores (VERY IMPORTANT for RAG)
+# ─────────────────────────────
+vectorstores/
+embeddings/
+chroma/
+chroma_db/
+*.sqlite3
+*.db
+*.pkl
+*.bin
+
+# ─────────────────────────────
+# LangChain / LLM caches
+# ─────────────────────────────
+.langchain/
+langchain_cache/
+langsmith/
+.ragas/
+
+# ─────────────────────────────
+# Secrets & API keys (CRITICAL)
+# ─────────────────────────────
+.env
+.env.*
+secrets.json
+api_keys.json
+api_keys.txt
+*.key
+
+# ─────────────────────────────
+# Streamlit
+# ─────────────────────────────
+.streamlit/
+.streamlit/config.toml
+
+# ─────────────────────────────
+# IDEs
+# ─────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ─────────────────────────────
+# OS files
+# ─────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ─────────────────────────────
+# Django / Flask leftovers (safe cleanup)
+# ─────────────────────────────
+db.sqlite3
+instance/
+.webassets-cache/
+
+# ─────────────────────────────
+# Scrapy / ML tools
+# ─────────────────────────────
+.scrapy/
+
+# ─────────────────────────────
+# Type checkers
+# ─────────────────────────────
+.mypy_cache/
+.pyre/
+.dmypy.json
+
+# ─────────────────────────────
+# Project-specific (RAG / LLM apps)
+# ─────────────────────────────
+temp/
+tmp/
+uploads/
+uploaded_files/
+processed_docs/

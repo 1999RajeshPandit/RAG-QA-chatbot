@@ -1,0 +1,51 @@
+# Core LangChain framework (main APIs, chains, orchestration)
+langchain==0.2.14
+# Core abstractions (runnables, prompts, base interfaces)
+langchain-core==0.2.32
+# Community integrations (loaders, tools, vectorstores, etc.)
+langchain-community==0.2.12
+# Text splitting utilities for chunking documents
+langchain-text-splitters==0.2.2
+
+# Groq integration (fast LLM inference)
+langchain-groq
+
+# Vector database (stores embeddings for semantic search)
+chromadb
+
+# LangChain wrapper for Chroma (new modular integration)
+langchain-chroma
+
+# For searching and downloading academic papers (Arxiv loader)
+arxiv
+
+# HTML/XML parsing (used in web scraping loaders)
+beautifulsoup4
+
+# Fast PDF processing (better performance than pypdf for large files)
+pymupdf
+
+# PDF reading and parsing (simple and widely used)
+pypdf
+
+# Load environment variables from .env file
+python-dotenv
+
+# Build simple UI for chatbot / RAG apps
+streamlit
+
+# Wikipedia document loader
+wikipedia
+
+# Hugging Face embeddings / local models
+sentence-transformers
+
+# Hugging Face integration for LLMs and embeddings
+langchain_huggingface
+# Deep learning backend (required for sentence-transformers)
+torch
+
+ipykernel
+
+# For web scraping (if you want to load documents from the web)
+beautifulsoup4
