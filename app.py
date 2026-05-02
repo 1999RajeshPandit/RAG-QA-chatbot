@@ -353,7 +353,7 @@ def load_web_page(url: str):
         st.warning(f"⚠️ Error loading {url}: {e}")
     return None
 
-_CHROMA_PATH = os.path.join(tempfile.gettempdir(), "rag_chroma_db")
+_CHROMA_PATH = "./chroma_db"
 
 def initialise_vectorstore():
     """Create a fresh persistent Chroma DB at a fixed temp path.
@@ -362,7 +362,7 @@ def initialise_vectorstore():
     from langchain_chroma import Chroma
     # Remove any leftover DB from a previous session so collection IDs stay clean
     if os.path.exists(_CHROMA_PATH):
-        shutil.rmtree(_CHROMA_PATH)
+        os.makedirs(_CHROMA_PATH, exist_ok=True)
     os.makedirs(_CHROMA_PATH, exist_ok=True)
     embeddings = get_embeddings()
     return Chroma(
