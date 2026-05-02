@@ -55,3 +55,6 @@ To start the Streamlit app, run:
 
 ```bash
 streamlit run app.py
+
+# APP DEMO
+<video controls src="20260502-0832-42.7987890.mp4" title="Title"></video>
