@@ -258,7 +258,7 @@ _init_state()
 # ─── Core RAG builder ─────────────────────────────────────────────────────────
 def get_embeddings():
     from langchain_huggingface import HuggingFaceEmbeddings
-    return HuggingFaceEmbeddings(model_name=model_name)
+    return HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
 def build_rag_chain(vectorstore):
     from langchain_groq import ChatGroq
@@ -266,7 +266,7 @@ def build_rag_chain(vectorstore):
     from langchain.chains import create_retrieval_chain, create_history_aware_retriever
     from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
-    chat_model = ChatGroq(model="qwen/qwen3-32b", temperature=0.7)
+    chat_model = ChatGroq(model=model_name, temperature=0.7)
     retriever = vectorstore.as_retriever()
 
     # History-aware retriever
