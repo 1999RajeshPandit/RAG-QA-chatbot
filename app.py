@@ -404,6 +404,7 @@ def process_sources(pdf_files, url_text: str):
 
 def clean_response(text: str) -> str:
     # remove <think>...</think>
+    import re
     text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL)
     return text.strip()
 
