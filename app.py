@@ -234,6 +234,7 @@ def setup_env():
     os.environ.setdefault("LANGCHAIN_ENDPOINT", "https://api.smith.langchain.com")
     os.environ.setdefault("LANGCHAIN_PROJECT", "RAG QA Chatbot")
 
+model_name = os.getenv("MODEL_NAME")
 setup_env()
 
 # ─── Session state defaults ───────────────────────────────────────────────────
@@ -257,7 +258,7 @@ _init_state()
 # ─── Core RAG builder ─────────────────────────────────────────────────────────
 def get_embeddings():
     from langchain_huggingface import HuggingFaceEmbeddings
-    return HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+    return HuggingFaceEmbeddings(model_name=model_name)
 
 def build_rag_chain(vectorstore):
     from langchain_groq import ChatGroq

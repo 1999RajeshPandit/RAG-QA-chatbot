@@ -47,6 +47,7 @@ LANGCHAIN_PROJECT="GENAI_APP_WITH_OPENAI"
 GROQ_API_KEY="your_groq_api_key_here"
 
 HF_TOKEN="your_huggingface_token_here"
+MODEL_NAME="your_model_name'
 
 # ▶️ Run Application
 
