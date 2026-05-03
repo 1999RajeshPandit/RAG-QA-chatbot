@@ -5,6 +5,7 @@ import requests
 import streamlit as st
 from dotenv import load_dotenv
 from bs4 import BeautifulSoup
+from langchain.schema import Document
 
 # ─── Page config (must be first Streamlit call) ──────────────────────────────
 st.set_page_config(
@@ -338,19 +339,54 @@ def store_documents(docs, vectorstore):
     return len(chunks)
 
 def load_web_page(url: str):
-    from langchain.schema import Document
     try:
-        r = requests.get(url, timeout=10)
+        # ✅ Wikipedia loader
+        if "wikipedia.org" in url:
+            from langchain.document_loaders import WikipediaLoader
+
+            query = url.split("/")[-1].replace("_", " ")
+            docs = WikipediaLoader(query=query, load_max_docs=1).load()
+
+            if docs:
+                return Document(
+                    page_content=docs[0].page_content[:15000],
+                    metadata={"source": url}
+                )
+
+        # ✅ arXiv loader
+        if "arxiv.org" in url:
+            from langchain.document_loaders import ArxivLoader
+
+            # extract arxiv id (works for abs links)
+            arxiv_id = url.split("/")[-1]
+            docs = ArxivLoader(query=arxiv_id, load_max_docs=1).load()
+
+            if docs:
+                return Document(
+                    page_content=docs[0].page_content[:15000],
+                    metadata={"source": url}
+                )
+
+        # ✅ Default loader (your existing logic)
+        r = requests.get(url, timeout=10, headers={"User-Agent": "Mozilla/5.0"})
         if r.status_code == 200:
             soup = BeautifulSoup(r.text, "html.parser")
+
             for tag in soup(["script", "style", "nav", "footer", "header"]):
                 tag.decompose()
+
             text = soup.get_text(separator="\n", strip=True)
-            return Document(page_content=text[:15000], metadata={"source": url})
+
+            return Document(
+                page_content=text[:15000],
+                metadata={"source": url}
+            )
         else:
             st.warning(f"⚠️ Could not load {url} (status {r.status_code})")
+
     except Exception as e:
         st.warning(f"⚠️ Error loading {url}: {e}")
+
     return None
 
 _CHROMA_PATH = "./chroma_db"
@@ -421,7 +457,7 @@ with st.sidebar:
             PDFs + Web → Intelligent Q&A
         </div>
        <div style='font-size:0.75rem;color:red;'>
-            Please do not apload any personal data
+            Please do not upload any personal data
         </div>
     </div>
     """, unsafe_allow_html=True)
